@@ -1,4 +1,3 @@
-// Recommendation system endpoints
 import express from "express";
 import { getRecommendations, getPopularProducts } from "../controllers/analyticsController.js";
 

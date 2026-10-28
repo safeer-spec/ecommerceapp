@@ -1,7 +1,6 @@
-// Order management endpoints
-import express from "express";
+import express from "express"
 import { protect, adminOnly } from "../middleware/authMiddleware.js";
-import { placeOrder, getMyOrders, updateOrderStatus } from "../controllers/orderController.js";
+import { placeOrder, getMyOrders, updateOrderStatus } from "../controllers/orderController.js"
 
 const router = express.Router();
 router.post("/", protect, placeOrder);

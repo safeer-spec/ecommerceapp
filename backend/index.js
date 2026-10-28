@@ -1,4 +1,4 @@
-// Main entry point for the Express server
+
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -25,5 +25,5 @@ app.use("/api/analytics", analyticsRoutes);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

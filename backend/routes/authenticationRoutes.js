@@ -1,4 +1,4 @@
-// Auth-related API endpoints
+
 import express from "express";
 import { register, login } from "../controllers/authentication.js";
 

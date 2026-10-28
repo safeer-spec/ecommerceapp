@@ -1,7 +1,7 @@
-// Handles product CRUD, filtering, and search
+
 import Product from "../models/product.js";
 
-// GET /api/products?search=phone&category=electronics
+
 export const getProducts = async (req, res, next) => {
   try {
     const { search, category } = req.query;

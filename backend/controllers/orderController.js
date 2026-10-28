@@ -1,8 +1,7 @@
-// Manages order placement, updates, and tracking
+
 import Order from "../models/order.js";
 import Product from "../models/product.js";
 
-// POST /api/orders   body: { items: [{ product: id, quantity: n }] }
 export const placeOrder = async (req, res, next) => {
   try {
     const { items } = req.body;
@@ -29,7 +28,6 @@ export const placeOrder = async (req, res, next) => {
   }
 };
 
-// Orders of the logged-in user
 export const getMyOrders = async (req, res, next) => {
   try {
     res.json(await Order.find({ user: req.user._id }).sort({ createdAt: -1 }));
