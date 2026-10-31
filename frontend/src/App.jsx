@@ -8,6 +8,7 @@ import Cart from "./pages/Cart.jsx";
 import Orders from "./pages/Orders.jsx";
 import Contact from "./pages/Contact.jsx";
 import Login from "./pages/Login.jsx";
+  import AddProduct from "./pages/Addproduct.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
           <Route path="/orders" element={<ProtectedRoute><Orders /></ProtectedRoute>} />
+          <Route path="/add-product" element={<ProtectedRoute><AddProduct /></ProtectedRoute>} />
         </Routes>
       </div>
       <Footer />
