@@ -14,6 +14,11 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
+app.get("/Home", (req, res) => {
+  res.status(200).send("Welcome to the home page");
+});
+
 app.use(cors({
   origin: "http://localhost:5173",
 }));
