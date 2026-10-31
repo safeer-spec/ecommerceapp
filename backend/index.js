@@ -15,6 +15,11 @@ connectDB();
 
 const app = express();
 
+
+app.get("/", (req, res) => {
+  res.status(200).send("E-commerce API is running");
+});
+
 app.get("/Home", (req, res) => {
   res.status(200).send("Welcome to the home page");
 });
