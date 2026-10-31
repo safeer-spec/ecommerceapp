@@ -25,7 +25,7 @@ app.get("/Home", (req, res) => {
 });
 
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://ecommercefrontend-nu-sage.vercel.app/",
 }));
 app.use(express.json());
 
