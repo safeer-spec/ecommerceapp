@@ -1,4 +1,3 @@
-
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -15,15 +14,6 @@ connectDB();
 
 const app = express();
 
-
-app.get("/", (req, res) => {
-  res.status(200).send("E-commerce API is running");
-});
-
-app.get("/Home", (req, res) => {
-  res.status(200).send("Welcome to the home page");
-});
-
 const allowedOrigins = [
   "https://ecommercefrontend-git-main-pro-7126.vercel.app",
   "https://ecommercefrontend-nu-sage.vercel.app",
@@ -34,8 +24,23 @@ const allowedOrigins = [
     .filter(Boolean),
 ];
 
-app.use(cors({ origin: allowedOrigins }));
+const corsOptions = {
+  origin: allowedOrigins,
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // preflight (see note below)
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.status(200).send("E-commerce API is running");
+});
+
+app.get("/Home", (req, res) => {
+  res.status(200).send("Welcome to the home page");
+});
 
 app.use("/api/auth", authenticationRoutes);
 app.use("/api/profile", userProfileRoutes);
@@ -45,5 +50,9 @@ app.use("/api/analytics", analyticsRoutes);
 
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 7000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 7000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+export default app;
