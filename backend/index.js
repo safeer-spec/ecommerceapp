@@ -24,9 +24,17 @@ app.get("/Home", (req, res) => {
   res.status(200).send("Welcome to the home page");
 });
 
-app.use(cors({
-  origin: "https://ecommercefrontend-nu-sage.vercel.app",
-}));
+const allowedOrigins = [
+  "https://ecommercefrontend-git-main-pro-7126.vercel.app",
+  "https://ecommercefrontend-nu-sage.vercel.app",
+  "http://localhost:5173",
+  ...(process.env.FRONTEND_URLS || "")
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean),
+];
+
+app.use(cors({ origin: allowedOrigins }));
 app.use(express.json());
 
 app.use("/api/auth", authenticationRoutes);
