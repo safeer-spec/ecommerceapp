@@ -3,6 +3,7 @@ import { removeFromCart, changeQuantity } from "../redux/slices/cartSlice.js";
 
 function CartItem({ item }) {
   const dispatch = useDispatch();
+  const itemId = item._id ?? item.id;
 
   return (
     <tr>
@@ -15,12 +16,12 @@ function CartItem({ item }) {
           className="form-control form-control-sm"
           style={{ width: 70 }}
           value={item.quantity}
-          onChange={(e) => dispatch(changeQuantity({ id: item._id, quantity: Number(e.target.value) }))}
+          onChange={(e) => dispatch(changeQuantity({ id: itemId, quantity: Number(e.target.value) }))}
         />
       </td>
       <td>${item.price * item.quantity}</td>
       <td>
-        <button className="btn btn-danger btn-sm" onClick={() => dispatch(removeFromCart(item._id))}>
+        <button className="btn btn-danger btn-sm" onClick={() => dispatch(removeFromCart(itemId))}>
           Remove
         </button>
       </td>

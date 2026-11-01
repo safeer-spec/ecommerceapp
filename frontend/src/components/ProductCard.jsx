@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../redux/thunks/cartThunks.js";
+import { addLocalProduct } from "../redux/slices/cartSlice.js";
 
 function ProductCard({ product }) {
   const dispatch = useDispatch();
@@ -13,8 +14,22 @@ function ProductCard({ product }) {
         <p className="card-text text-muted">{product.category}</p>
         <p className="fw-bold mt-auto">${product.price}</p>
         <div className="d-flex gap-2">
-          <Link to={`/product/${product._id}`} className="btn btn-outline-secondary btn-sm">Details</Link>
-          <button className="btn btn-primary btn-sm" onClick={() => dispatch(addToCart(product._id))}>
+          {product._id && (
+            <Link
+              to={`/product/${product._id}`}
+              className="btn btn-outline-secondary btn-sm"
+            >
+              Details
+            </Link>
+          )}
+          <button
+            className="btn btn-primary btn-sm"
+            onClick={() =>
+              dispatch(
+                product._id ? addToCart(product._id) : addLocalProduct(product),
+              )
+            }
+          >
             Add to cart
           </button>
         </div>

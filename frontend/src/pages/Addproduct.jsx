@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axiosInstance from "../api/axiosInstance.js"; // adjust path to wherever your axios file lives
+import axiosInstance from "../api/axiosInstance.js"; 
 
 const emptyForm = {
   name: "",
